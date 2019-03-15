@@ -1,0 +1,113 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+* :before,
+* :after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0px;
+}
+
+
+/* Forms */
+
+.form {
+    width: 60%;
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 1em;
+    font-weight: lighter;
+    color: white;
+    background: black;
+}
+
+.login {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(112, 120, 133, 0.8);
+    height: 100%;
+    background: linear-gradient(to right, rgba(112, 120, 133, 0.8), rgba(96, 105, 121, 0.5), rgba(225, 226, 228, 0.8), rgba(254, 255, 255, 0.5)), url(../img/mail.jpg) no-repeat;
+    padding: 10%;
+}
+
+.login-input {
+    display: block;
+    min-height: 40px;
+    width: 90%;
+    font-size: 0.8em;
+    margin: 10px 0;
+    border-style: ridge;
+    border-width: 1px;
+    background: black;
+    color: white;
+    padding: 5px;
+}
+
+.signup-btn {
+    float: right;
+    border-style: 1px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: teal;
+    width: 150px;
+    min-height: 40px;
+    margin: 5px 1px;
+    background-color: black;
+    color: teal;
+}
+
+.submit-btn {
+    float: right;
+    border-style: solid;
+    border-radius: 3px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: teal;
+    width: 100px;
+    min-height: 40px;
+    margin: 5px 1px;
+    background-color: black;
+    color: teal;
+}
+
+.login-label {
+    font-weight: lighter;
+    font-size: 1em;
+    text-align: center;
+}
+
+.forgot-pass {
+    font-size: 0.7em;
+    color: teal;
+    text-decoration: none;
+    float: right;
+    padding-right: 10%;
+}
+
+.login-label .epic-mail {
+    color: rgb(21, 80, 170);
+    font-size: 1.3em;
+}
+
+.login-label .mail-label {
+    color: white;
+    font-size: 1.3em;
+}
+
+.login-label label {
+    font-style: italic;
+}
+
+@media only screen and (max-width: 573px) {
+    .login {
+        padding: 0px;
+        padding-top: 10%;
+    }
+    .form {
+        width: 90%;
+    }
+}
