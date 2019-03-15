@@ -63,7 +63,6 @@ body {
 .submit-btn {
     float: right;
     border-style: solid;
-    border-radius: 3px;
     border-width: 1px;
     border-radius: 5px;
     border-color: teal;
@@ -100,6 +99,26 @@ body {
 
 .login-label label {
     font-style: italic;
+}
+
+
+/* Reset password page */
+
+.reset-pass-btn {
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: teal;
+    width: 80%;
+    min-height: 40px;
+    background: black;
+    color: teal;
+    margin: 5px 8%;
+}
+
+.reset-label {
+    text-align: start;
+    font-size: 1.2em;
 }
 
 @media only screen and (max-width: 573px) {
