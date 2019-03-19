@@ -13,15 +13,15 @@ function showHidden() {
 }
 
 function showMessage() {
-    window.open('../UI/show_message.html', '_self');
+    window.open('show_message.html', '_self');
 }
 
 function compose() {
-    window.open('../UI/compose.html', '_self');
+    window.open('compose.html', '_self');
 }
 
 function createGroup() {
-    open('../UI/admin_adds_member.html', '_self');
+    open('admin_adds_member.html', '_self');
 }
 
 function validateForm() {
@@ -35,11 +35,11 @@ function validateForm() {
             return false;
         }
     } else {
-        open('../UI/email_box.html', '_self');
+        open('email_box.html', '_self');
         return false;
     }
 }
 
 function openInbox() {
-    open('../UI/email_box.html', '_self');
+    open('email_box.html', '_self');
 }
