@@ -1,0 +1,33 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Epic Mail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="img/mail.jpg" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <section class="login">
+        <div class="form">
+            <h2 class="login-label reset-label"> Forgot <label class="epic-mail">Epic</label><label class="mail-label">Mail</label> password?</h2>
+            <p>Enter your email and your new password below</p>
+            <form action="email_box.html" method="GET" class="sign">
+                <fieldset>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="e.g. eubule321@gmail.com" class="login-input" required>
+                    <label for="password">New Password</label>
+                    <input type="password" placeholder="Your New Password" name="password" class="login-input" required>
+                    <a href="signup.html" class="forgot-pass">Create an account instead</a>
+                </fieldset>
+                <input type="submit" name="submit" value="RESET PASSWORD" class="reset-pass-btn">
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

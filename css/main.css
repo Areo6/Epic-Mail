@@ -1,0 +1,583 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+* :before,
+* :after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0px;
+}
+
+
+/* Forms */
+
+.form {
+    width: 60%;
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 1em;
+    font-weight: lighter;
+    color: white;
+    background: black;
+}
+
+.login {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(112, 120, 133, 0.8);
+    height: 100%;
+    background: linear-gradient(to right, rgba(112, 120, 133, 0.8), rgba(96, 105, 121, 0.5), rgba(225, 226, 228, 0.8), rgba(254, 255, 255, 0.5)), url(../img/mail.jpg) no-repeat;
+    padding: 10%;
+}
+
+.login-input {
+    display: block;
+    min-height: 40px;
+    width: 90%;
+    font-size: 0.8em;
+    margin: 10px 0;
+    border-style: ridge;
+    border-width: 1px;
+    background: black;
+    color: white;
+    padding: 5px;
+}
+
+.signup-btn {
+    float: right;
+    border-style: 1px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: teal;
+    width: 150px;
+    min-height: 40px;
+    margin: 5px 1px;
+    background-color: black;
+    color: teal;
+}
+
+.submit-btn {
+    float: right;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: teal;
+    width: 100px;
+    min-height: 40px;
+    margin: 5px 1px;
+    background-color: black;
+    color: teal;
+}
+
+.login-label {
+    font-weight: lighter;
+    font-size: 1em;
+    text-align: center;
+}
+
+.forgot-pass {
+    font-size: 0.7em;
+    color: teal;
+    text-decoration: none;
+    float: right;
+    padding-right: 10%;
+}
+
+.login-label .epic-mail {
+    color: rgb(21, 80, 170);
+    font-size: 1.3em;
+}
+
+.login-label .mail-label {
+    color: white;
+    font-size: 1.3em;
+}
+
+.login-label label {
+    font-style: italic;
+}
+
+
+/* Reset password page */
+
+.reset-pass-btn {
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: teal;
+    width: 80%;
+    min-height: 40px;
+    background: black;
+    color: teal;
+    margin: 5px 8%;
+}
+
+.reset-label {
+    text-align: start;
+    font-size: 1.2em;
+}
+
+
+/* Email box page */
+
+
+/* Navigation bar */
+
+nav {
+    width: 100%;
+    height: 60px;
+    border-style: solid;
+    border-right: 0px;
+    border-left: 0px;
+    border-top: 0px;
+    border-width: 1px;
+    border-color: rgb(233, 230, 230);
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.epic-logo {
+    color: rgb(21, 80, 170);
+    font-size: 1.3em;
+}
+
+.mail-logo {
+    color: black;
+    font-size: 1.3em;
+}
+
+#profile-pic {
+    float: right;
+}
+
+#epic-mail-label {
+    position: relative;
+    bottom: 6px;
+    margin-left: 15px;
+}
+
+
+/* Narrow column */
+
+.content-wrap {
+    width: 100%;
+    display: flex;
+}
+
+.col-narrow {
+    min-width: 280px;
+    height: 100%;
+}
+
+.col-narrow button {
+    display: block;
+}
+
+#compose-btn {
+    border-style: ridge;
+    border-width: 1px;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    border-color: rgb(235, 233, 233);
+    background: white;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    cursor: grabbing;
+}
+
+.compose-lab {
+    position: relative;
+    bottom: 6px;
+    font-weight: 500;
+    margin-left: 10px;
+    font-size: 1.2em;
+    /* font-weight: lighter; */
+}
+
+.inbox-btn {
+    width: 250px;
+    border-style: none;
+    border-left: 0px;
+    height: 30px;
+    text-align: start;
+    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    background: white;
+}
+
+.inbox-btn:hover {
+    background: rgb(241, 238, 238);
+    cursor: grabbing;
+}
+
+.box-span {
+    margin-left: 20px;
+    position: relative;
+    bottom: 2px;
+    font-size: 1.2em;
+}
+
+
+/* wide column */
+
+.hiden-func {
+    /* height: 50px; */
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(233, 230, 230);
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    padding-bottom: 10px;
+}
+
+.hidden-btn {
+    border-style: ridge;
+    border-width: 1px;
+    border-radius: 15px;
+    padding: 10px;
+    background: white;
+    border-style: none;
+}
+
+#hide-btns {
+    visibility: hidden;
+}
+
+.hidden-draft {
+    padding: 12px;
+}
+
+.hidden-btn:hover {
+    background: rgb(230, 224, 224);
+    cursor: grabbing;
+}
+
+.msg-body {
+    max-width: 1050px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+}
+
+.msg-box:hover {
+    cursor: grabbing;
+    border-color: rgb(190, 186, 186) !important;
+    border-width: 1px !important;
+}
+
+.msg-box {
+    width: 100%;
+    max-height: 37px;
+    border-style: solid;
+    border-width: 1px;
+    border-left: 0px;
+    border-right: 0px;
+    /* border-top: 1px; */
+    margin: 0px;
+    padding: 7px;
+    border-color: rgb(228, 225, 225);
+    display: flex;
+    background: rgb(236, 241, 241);
+}
+
+.msg-box button {
+    border-style: none;
+    font-size: 0.95em;
+    background: rgb(236, 241, 241);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: grabbing;
+    outline: none;
+    /* white-space: nowrap; */
+}
+
+.msg-box button:focus {
+    outline: none;
+}
+
+.msg-box button:active {
+    outline: none;
+}
+
+.msg-box button::-moz-focus-inner {
+    border: 0;
+}
+
+.sender {
+    min-width: 150px;
+    margin-left: 5px;
+    text-align: start;
+}
+
+.message {
+    min-width: 300px;
+    max-width: 70%;
+    overflow: hidden;
+    height: 1.33em;
+    padding: 2px;
+    text-align: start;
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
+    /* positon: irelative; */
+}
+
+.date {
+    min-width: 150px;
+    text-align: right;
+    padding-right: 15px;
+    text-align: end;
+}
+
+.send-sub-color {
+    color: rgb(47, 45, 45);
+}
+
+.msg-lab {
+    color: rgb(129, 122, 122);
+}
+
+
+/* Show message page */
+
+.msg-body h3 {
+    width: 100%;
+    min-width: 400px;
+    /* font-weight: lighter; */
+}
+
+.msg-body p {
+    min-width: 470px;
+}
+
+.msg-body h4 span {
+    float: right;
+    color: gray;
+}
+
+.msg-body h4 label {
+    font-size: 0.8em;
+    color: gray;
+}
+
+.show-msg {
+    width: 80%;
+    /* min-width: 742px; */
+}
+
+
+/* Compose page */
+
+.compose-email {
+    min-width: 300px;
+    max-width: 50%;
+}
+
+.compose-email input {
+    width: 100%;
+    height: 37px;
+    font-size: 1.1em;
+    border-style: none;
+    font-weight: lighter;
+}
+
+.compose-email textarea {
+    width: 100%;
+    height: 30em;
+    padding-top: 1em;
+    border-style: none;
+}
+
+.wide-compose {
+    width: 100%;
+}
+
+.recip-sub {
+    height: 39px;
+    border-style: solid;
+    border-width: 1px;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-color: rgb(212, 211, 211);
+}
+
+.recipient-div {
+    display: flex;
+}
+
+.recipient-div label {
+    position: relative;
+    top: 8px;
+    margin-right: 10px;
+}
+
+.send {
+    float: right;
+    width: 70px;
+    height: 37px;
+    padding: 2px;
+    font-size: 1em;
+    background: rgb(83, 141, 228);
+    border-style: ridge;
+    border-width: 1px;
+    border-color: rgb(97, 156, 245);
+    border-radius: 15px;
+    margin: 5px;
+    color: black;
+    font-weight: lighter;
+}
+
+#discard {
+    color: rgb(97, 156, 245);
+    background: black;
+    border-color: black;
+}
+
+.admin-wide {
+    width: 100%;
+}
+
+
+/* Admin create group page */
+
+.member-name {
+    min-width: 200px;
+}
+
+.remove {
+    min-width: 100px;
+    text-align: end;
+    float: right;
+    color: rgb(91, 161, 219);
+}
+
+.email-btn {
+    min-width: 200px;
+    /* width: 40%; */
+    overflow: hidden;
+    text-align: start;
+}
+
+.member-box {
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-left: 0px;
+    border-right: 0px;
+    margin: 0px;
+    padding: 7px;
+    border-color: rgb(228, 225, 225);
+    background: rgb(236, 241, 241);
+    overflow: auto;
+}
+
+.member-box button {
+    border-style: none;
+    font-size: 0.95em;
+    background: rgb(236, 241, 241);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: grabbing;
+    outline: none;
+}
+
+.member-box button:focus {
+    outline: none;
+}
+
+.member button:active {
+    outline: none;
+}
+
+.memeber-box button::-moz-focus-inner {
+    border: 0;
+}
+
+#members {
+    min-width: 300px;
+}
+
+#members h1 {
+    font-weight: lighter;
+}
+
+#groups {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+/* Admin adds members page */
+
+.members {
+    border-style: solid;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-width: 1px;
+    border-color: rgb(202, 198, 198);
+}
+
+#create-group {
+    width: 50%;
+    margin: 20px;
+    margin-left: 0px;
+    height: 42px;
+    border-style: ridge;
+    border-width: 1px;
+    border-color: rgb(192, 188, 188);
+    border-radius: 15px;
+    padding-left: 10px;
+    font-size: 1.13em;
+    font-weight: lighter;
+}
+
+#create-group:focus {
+    border-color: rgb(91, 161, 219);
+}
+
+#create-btn {
+    width: 150px;
+    height: 42px;
+    border-style: none;
+    border-radius: 15px;
+    background: rgb(91, 161, 219);
+    border-color: rgb(91, 161, 219);
+    font-size: 1.13em;
+    font-weight: lighter;
+}
+
+@media only screen and (max-width: 573px) {
+    .login {
+        padding: 0px;
+        padding-top: 10%;
+    }
+    .form {
+        width: 90%;
+    }
+    /* .member-box {
+        width: 100%;
+        max-height: 100px;
+    } */
+    .remove {
+        float: left;
+        text-align: start;
+    }
+}
+
+@media only screen and (max-width: 639px) {}
+
+@media only screen and (max-width: 856px) {
+    .show-msg {
+        width: 100%;
+    }
+}
