@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Epic Mail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="img/mail.jpg" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <header role="banner">
+        <nav>
+            <img src="img/mail.jpg" alt="EpicMail image" width="35px" height="35px" id="epic-mail-logo">
+            <span id="epic-mail-label"><label class="epic-logo">Epic</label><label class="mail-logo">Mail</label></span>
+            <img src="img/profile.png" alt="Profile image" height="35px" width="35px" id="profile-pic">
+        </nav>
+    </header>
+    <main role="main">
+        <div class="content-wrap">
+            <div class="col-narrow" id="col-narrow">
+                <button id="compose-btn" onclick="createGroup()"><img src="img/compose.png" height="20px"> <span class="compose-lab">Create New Group</span></button>
+                <div id="groups">
+                    <label>Groups</label>
+                </div>
+                <button class="inbox-btn"><span class="inbox-lab box-span">ICT Depart</span></button>
+                <button class="inbox-btn"><span class="sent-lab box-span">Finance Depart</span></button>
+                <button class="inbox-btn"><span class="draft-lab box-span">Management</button>
+            </div>
+            <div class="admin-wide">
+                <div id="members" class="members">
+                    <h1>Create Group</h1>
+                </div>
+                <div id="wrapper">
+                    <input type="text" placeholder="Group's Name" id="create-group">
+                    <button id="create-btn" onclick="create()">Create Group</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

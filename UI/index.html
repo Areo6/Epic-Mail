@@ -15,15 +15,15 @@
     <section class="login">
         <div class="form">
             <h2 class="login-label"> Log In to <label class="epic-mail">Epic</label><label class="mail-label">Mail</label></h2>
-            <form action="index.html" method="GET" class="sign">
+            <form method="GET" name="formLogin" class="sign" action="admin_view_groups.html" onsubmit="return validateForm()">
                 <fieldset>
                     <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="e.g. eubule321@gmail.com" class="login-input" required>
+                    <input type="email" id="login-em" name="formemail" placeholder="e.g. eubule321@gmail.com" class="login-input" required>
                     <label for="password">Password</label>
-                    <input type="password" placeholder="Your Password" name="password" class="login-input" required>
+                    <input id="login-pass" type="password" placeholder="Your Password" name="formpassword" class="login-input" required>
                     <a href="reset.html" class="forgot-pass">Forgot password?</a>
                 </fieldset>
-                <input type="submit" name="submit" value="Submit" class="submit-btn">
+                <input type="submit" value="Submit" name="submit" class="submit-btn">
                 <a href="signup.html"><input type="button" name="submit" value="Create an account?" class="signup-btn"></a>
             </form>
         </div>

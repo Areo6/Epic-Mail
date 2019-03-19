@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Epic Mail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="img/mail.jpg" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <header role="banner">
+        <nav>
+            <img src="img/mail.jpg" alt="EpicMail image" width="35px" height="35px" id="epic-mail-logo">
+            <span id="epic-mail-label"><label class="epic-logo">Epic</label><label class="mail-logo">Mail</label></span>
+            <img src="img/profile.png" alt="Profile image" height="35px" width="35px" id="profile-pic">
+        </nav>
+    </header>
+    <main role="main">
+        <div class="content-wrap">
+            <div class="col-narrow">
+                <button id="compose-btn" onclick="compose()"><img src="img/compose.png" height="20px"> <span class="compose-lab">Compose</span></button>
+                <button onclick="openInbox()" class="inbox-btn"><img src="img/Inbox-icon.png" height="15px" width="15px"> <span class="inbox-lab box-span">Inbox</span></button>
+                <button onclick="openInbox()" class="inbox-btn"><img src="img/sent.jpeg" height="15px" width="15px"> <span class="sent-lab box-span">Sent</span></button>
+                <button onclick="openInbox()" class="inbox-btn"><img src="img/draft.jpg" height="14px" width="11px"> <span class="draft-lab box-span">Draft</button>
+            </div>
+            <div class="col-wide">
+                <div class="hiden-func">
+                    <div id="hide-btns">
+                        <button class="hidden-btn"><img src="img/delete.png" height="15px" width="15px"></button>
+                        <button class="hidden-btn hidden-draft"><img src="img/draft.jpg" height="13px" width="10px"></button>
+                    </div>
+                </div>
+                <div id="wrapper">
+                    <div class="msg-body">
+                        <div class="msg-box">
+                            <input type="checkbox" class="email-box" onclick="showHidden()">
+                            <button class="sender send-sub-color" onclick="showMessage()">Rick Oburu</button>
+                            <button class="message" onclick="showMessage()"><label class="subject-lab send-sub-color">Reminder - </label><label class="msg-lab">Hi man! Just to inform you about our program tomorrow, I would like us to meet at the round about in Munyonyo at 14 : 30. Please don't be late Thanks</label></button>
+                            <button class="date" onclick="showMesage()">9 : 00</button>
+                        </div>
+                    </div>
+                    <div class="msg-body">
+                        <div class="msg-box">
+                            <input type="checkbox" class="email-box" onclick="showHidden()">
+                            <button class="sender send-sub-color" onclick="showMessage()">Sudi David</button>
+                            <button class="message" onclick="showMessage()"><label class="subject-lab send-sub-color">Good bye - </label><label class="msg-lab">Hello buddy! I am writing this to let you know that I am traveling tomorrow in the morning to Goma. I couldn't find you on the phone, so I decided to let you know this by mail. Greetings to the rest of the family. See you soon. Take care</label></button>
+                            <button class="date" onclick="showMessage()">16/3/2019</button>
+                        </div>
+                    </div>
+                    <div class="msg-body">
+                        <div class="msg-box">
+                            <input type="checkbox" class="email-box" onclick="showHidden()">
+                            <button class="sender send-sub-color" onclick="showMessage()">Nextel Systems</button>
+                            <button class="message" onclick="showMessage()"><label class="subject-lab send-sub-color">Job Interview - </label><label class="msg-lab">Hi Malaba. We hope this finds you well. We considered you application for Junior developer job and we are glad to let you know that You are invited for a face-to-face interview this Tuesday 19th March 2019 at our locals in Muyenga TankHill road, Plot No. 134. We hope to see you soon. Regards</button>
+                            <button class="date" onclick="showMessage()">15/3/2019</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
