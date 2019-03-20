@@ -43,3 +43,7 @@ function validateForm() {
 function openInbox() {
     open('email_box.html', '_self');
 }
+
+function logout() {
+    open('index.html', '_self');
+}
