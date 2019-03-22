@@ -13,14 +13,14 @@ class UserController:
         This method adds a new user
         """
         user = User(firstName=firstName, lastName=lastName, email=email, password=password)
-        create = dbMeth.signup(firstName=firstName, lastName=lastName, email=email, password=password)
+        create = dsMeth.signup(firstName=firstName, lastName=lastName, email=email, password=password)
         return create
     
     def is_existing_user(self, email):
         """
         This method returns the user if he exists
         """
-        user = dbMeth.is_existing_user(email=email)
+        user = dsMeth.is_existing_user(email=email)
         if user:
             return user
 
@@ -28,7 +28,7 @@ class UserController:
         """
         This method helps the user to login
         """
-        user = dbMeth.login(email=email, password=password)
+        user = dsMeth.login(email=email, password=password)
         if user:
             return user
 
@@ -41,34 +41,34 @@ class MessageController:
         This controls the creation of a new message
         """
         message = Message(subject=subject, message=message, sendTo=sendTo, status=status)
-        create = dbMeth.create_message(subject=subject, message=message, sendTo=sendTo, status=status)
+        create = dsMeth.create_message(subject=subject, message=message, sendTo=sendTo, status=status)
         return create
 
     def fetch_received_messages(self):
         """
         This method fetches all Received messages
         """
-        emails = dbMeth.fetch_received_messages()
+        emails = dsMeth.fetch_received_messages()
         return emails
     
     def fetch_unread_emails(self):
         """
         This method retrieves all the the unread emails
         """
-        unread = dbMeth.fetch_unread_messages()
+        unread = dsMeth.fetch_unread_messages()
         return unread
     
     def fetch_specific_message(self, id):
         """
         This method fetches a specific email
         """
-        unread = dbMeth.fetch_specific_message()
+        unread = dsMeth.fetch_specific_message()
         return unread
 
     def delete_message(self, id):
         """
         This method deletes a message given a email id
         """
-        message = dbMeth.delete_message(id=id)
+        message = dsMeth.delete_message(id=id)
         return message
 

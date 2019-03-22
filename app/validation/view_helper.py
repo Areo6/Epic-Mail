@@ -13,8 +13,8 @@ class ViewHelper:
         """
         This method helps validate the user
         """
-        if is_valid_name(fistName) != "Valid":
-            return is_valid_name(fistName)
+        if is_valid_name(firstName) != "Valid":
+            return is_valid_name(firstName)
         if is_valid_name(lastName) != "Valid":
             return is_valid_name(lastName)
         if is_valid_email(email) != "Valid":

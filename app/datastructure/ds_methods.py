@@ -1,4 +1,4 @@
-form datetime import datetime as dt
+from datetime import datetime as dt
 # from werkzeug.security import generate_hash_password, check_password_hash
 
 
@@ -78,7 +78,7 @@ class DSMethods:
             'subject': subject,
             'message': message,
             'sendTo': sendTo,
-            'status': status
+            'status': status,
             'createdOn': createdOn
         }
 

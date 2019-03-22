@@ -20,7 +20,7 @@ def is_valid_email(email):
     return "Valid"
 
 def is_valid_status(status):
-    if status != "draft" or status != "sent" or status != "read" or status = "received" or status = "unread":
+    if status != "draft" or status != "sent" or status != "read" or status != "received" or status != "unread":
         return "Message status must be either draft, sent or read"
     return "Valid"
 
