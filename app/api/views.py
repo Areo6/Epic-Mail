@@ -58,5 +58,57 @@ def signup():
     return jsonify({
         "status": 201,
         "token": access_token
-    }), 201
+    }), 201 
 
+@mod.route("/api/v1/auth/login", methods = ["POST"])
+def login():
+    """
+    This endpoint allows the user to login
+    """
+    try:
+        json.loads(request.get_data())
+    except (ValueError, TypeError):
+        return jsonify({
+            "status": 400,
+            "error": "Your request should be a dictionary"
+        }), 400
+    data = request.get_json(force=True)
+    if not data:
+        return jsonify({
+            "status": 400,
+            "error": "Your request must be in json format"
+        }), 400
+    print(len(data))
+    if len(data) < 2:
+        return jsonify({
+            "status": 400,
+            "error": "Missing fields. Please make sure email and password are provided"
+            }),400
+    if len(data) > 2:
+        return jsonify({
+            "status": 414,
+            "error": "Too many arguments. Only email and password are required"
+            }),414
+    if not "email" in data or not "password" in data:
+        return jsonify({
+            "status": 400,
+            "error": "email or password is missing. Please check the spelling"
+        }), 400
+
+    user_login = helper.user_can_login(data["email"], data["password"])
+    if user_login != "Valid":
+        return jsonify({
+            "status": 417,
+            "error": user_login
+        }), 417
+    user = userControl.login(data["email"], data["password"])
+    if user:
+        access_token = create_access_token(identity=user, expires_delta=datetime.timedelta(days=1))
+        return jsonify({
+            "status": 200,
+            "data": access_token
+        }), 200
+    return jsonify({
+            "status": 401,
+            "error": "email or password incorrect. Please try again"
+        }), 401

@@ -29,7 +29,7 @@ class DSMethods:
         """
         Checks if a user already exists
         """
-        user = [user for user in users if users['email'] == email]
+        user = [user for user in users if user['email'] == email]
         if len(user) != 0:
             return user[0]
 
