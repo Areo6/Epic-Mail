@@ -6,9 +6,8 @@ class DSMethods:
     """
     This class contains methods to query the datastructure
     """
-    def __init__(self):
-        self.users = []
-        self.messages = []
+    users = []
+    messages = []
 
     def signup(self, firstName, lastName, email, password):
         """
@@ -39,7 +38,7 @@ class DSMethods:
         """
         Checks if the user id exists
         """
-        user = [user for user in self.users if self.users['id'] == id]
+        user = [user for user in self.users if user['id'] == id]
         if len(user) != 0:
             return True
 

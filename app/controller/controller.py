@@ -7,7 +7,7 @@ class UserController:
     This class controls user model
     """
     def __init__(self):
-        self.self.dsMeth = DSMethods()
+        self.dsMeth = DSMethods()
 
     def signup(self, firstName, lastName, email, password):
         """
@@ -75,6 +75,13 @@ class MessageController:
         """
         msg = self.dsMeth.fetch_specific_message(id)
         return msg
+    
+    def is_existing_message_id(self, id):
+        """
+        This checks if a message id exists
+        """
+        message = self.dsMeth.is_existing_message_id(id)
+        return message
 
     def delete_message(self, id):
         """
