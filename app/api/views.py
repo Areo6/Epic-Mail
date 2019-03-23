@@ -158,3 +158,14 @@ def create_message():
         "status": 201,
         "data": data
     }), 201
+
+@mod.route("/api/v1/messages", methods=["GET"])
+def fetch_received_messages():
+    """
+    This endpoint allows the user to view all messages
+    """
+    print (msgControl.fetch_received_messages())
+    return jsonify({
+        "status": 200,
+        "data": msgControl.fetch_received_messages()
+    }), 200

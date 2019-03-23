@@ -73,7 +73,7 @@ class DSMethods:
         #Picks the current date and time
         createdOn = '{:%Y-%m-%d %H:%M}'.format(dt.now())
 
-        message = {
+        msg = {
             'id': id,
             'subject': subject,
             'message': message,
@@ -82,13 +82,15 @@ class DSMethods:
             'createdOn': createdOn
         }
 
-        messages.append(message)
-        return message
+        messages.append(msg)
+        return msg
 
-    def fecth_received_messages(self):
+    def fetch_received_messages(self):
         """
         This method fetch all mesages in the inbox
         """
+        if len(messages) == 0:
+            return "Oops! It's lonely here. No messages Yet"
         return messages
 
     def fetch_unread_messages(self):
@@ -98,6 +100,7 @@ class DSMethods:
         message = [message for message in messages if message['status'] == 'unread']
         if len(message) != 0:
             return message
+        return "Oops! There are no unread Messages here"
 
     def fetch_sent_messages(self):
         """
@@ -106,6 +109,7 @@ class DSMethods:
         message = [message for message in messages if message['status'] == 'sent']
         if len(message) != 0:
             return message
+        return "Oh oh! There are no sent messages yet"
 
     def fetch_specific_message(self, id):
         """

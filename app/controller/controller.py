@@ -40,7 +40,7 @@ class MessageController:
         """
         This controls the creation of a new message
         """
-        message = Message(subject=subject, message=message, sendTo=sendTo, status=status)
+        msg = Message(subject=subject, message=message, sendTo=sendTo, status=status)
         create = dsMeth.create_message(subject=subject, message=message, sendTo=sendTo, status=status)
         return create
 
