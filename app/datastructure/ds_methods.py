@@ -2,18 +2,20 @@ from datetime import datetime as dt
 # from werkzeug.security import generate_hash_password, check_password_hash
 
 
-users = []
-messages = []
 class DSMethods:
     """
     This class contains methods to query the datastructure
     """
+    def __init__(self):
+        self.users = []
+        self.messages = []
+
     def signup(self, firstName, lastName, email, password):
         """
         This methods create a new user
         """
         #Automaticaly generates user id
-        id = len(users) + 1
+        id = len(self.users) + 1
 
         user = {
             'id': id,
@@ -22,14 +24,14 @@ class DSMethods:
             'lastName': lastName,
             'password': password
         }
-        users.append(user)
+        self.users.append(user)
         return user
 
     def is_existing_user(self, email):
         """
         Checks if a user already exists
         """
-        user = [user for user in users if user['email'] == email]
+        user = [user for user in self.users if user['email'] == email]
         if len(user) != 0:
             return user[0]
 
@@ -37,7 +39,7 @@ class DSMethods:
         """
         Checks if the user id exists
         """
-        user = [user for user in users if users['id'] == id]
+        user = [user for user in self.users if self.users['id'] == id]
         if len(user) != 0:
             return True
 
@@ -45,7 +47,7 @@ class DSMethods:
         """
         Checks if user password is correct
         """
-        user = [user for user in users if user['email'] == email and user['password'] == password]
+        user = [user for user in self.users if user['email'] == email and user['password'] == password]
         if user:
             return True
 
@@ -53,14 +55,14 @@ class DSMethods:
         """
         This logs the user in given email and password
         """
-        user = [user for user in users if user['email'] == email and user['password'] == password]
+        user = [user for user in self.users if user['email'] == email and user['password'] == password]
         return user
 
     def is_existing_message_id(self, id):
         """
         This checks if a message id exists
         """
-        message = [message for message in messages if message['id'] == id]
+        message = [message for message in self.messages if message['id'] == id]
         if len(message) != 0:
             return message
 
@@ -68,7 +70,7 @@ class DSMethods:
         """
         Creates a new message
         """
-        id = len(messages) + 1
+        id = len(self.messages) + 1
         
         #Picks the current date and time
         createdOn = '{:%Y-%m-%d %H:%M}'.format(dt.now())
@@ -82,22 +84,22 @@ class DSMethods:
             'createdOn': createdOn
         }
 
-        messages.append(msg)
+        self.messages.append(msg)
         return msg
 
     def fetch_received_messages(self):
         """
         This method fetch all mesages in the inbox
         """
-        if len(messages) == 0:
+        if len(self.messages) == 0:
             return "Oops! It's lonely here. No messages Yet"
-        return messages
+        return self.messages
 
     def fetch_unread_messages(self):
         """
         Fetches all the unread messages
         """
-        message = [message for message in messages if message['status'] == 'unread']
+        message = [message for message in self.messages if message['status'] == 'unread']
         if len(message) != 0:
             return message
         return "Oops! There are no unread Messages here"
@@ -106,7 +108,7 @@ class DSMethods:
         """
         To fetch all sent messages
         """
-        message = [message for message in messages if message['status'] == 'sent']
+        message = [message for message in self.messages if message['status'] == 'sent']
         if len(message) != 0:
             return message
         return "Oh oh! There are no sent messages yet"
@@ -115,7 +117,7 @@ class DSMethods:
         """
         Fetches a specific email given the message id
         """
-        message = [message for message in messages if message['id'] == id]
+        message = [message for message in self.messages if message['id'] == id]
         if len(message) != 0:
             return message
 
@@ -123,7 +125,7 @@ class DSMethods:
         """
         This method deletes an email even the the email id
         """
-        message = [message for message in messages if message['id'] == id]
+        message = [message for message in self.messages if message['id'] == id]
         if len(message) != 0:
-            messages.remove(message[0])
+            self.messages.remove(message[0])
             return message[0]  
