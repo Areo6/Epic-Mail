@@ -69,8 +69,8 @@ class MessageController:
         """
         This method fetches a specific email
         """
-        unread = dsMeth.fetch_specific_message()
-        return unread
+        msg = dsMeth.fetch_specific_message(id)
+        return msg
 
     def delete_message(self, id):
         """

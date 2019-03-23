@@ -57,7 +57,7 @@ def signup():
     access_token = create_access_token(identity=user, expires_delta=datetime.timedelta(days=1))
     return jsonify({
         "status": 201,
-        "token": access_token
+        "data": access_token
     }), 201 
 
 @mod.route("/api/v1/auth/login", methods = ["POST"])
@@ -187,4 +187,50 @@ def fetch_sent_messages():
     return jsonify({
         "status": 200,
         "data": msgControl.fetch_sent_messages()
+    }), 200
+
+@mod.route("/api/v1/messages/<id>", methods=["GET"])
+def fetch_specific_message(id):
+    """
+    This endpoint allows the user to fetch a specific message
+    """
+    try:
+        id = int(id)
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 405,
+            "error": "Id should be an integer"
+        }), 405
+    message_exists = meth.is_existing_message_id(id)
+    if not message_exists:
+        return jsonify({
+            "status": 401,
+            "error": "Id {} not found".format(id)
+        }), 401
+    return jsonify({
+        "status": 200,
+        "data": msgControl.fetch_specific_message(id)
+    }), 200
+
+@mod.route("/api/v1/messages/<id>", methods=["DELETE"])
+def delete_message(id):
+    """
+    This endpoint allows the user to delete a message
+    """
+    try:
+        id = int(id)
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 405,
+            "error": "Id should be an integer"
+        }), 405
+    validate_delete = helper.message_delete_validation(id)
+    if validate_delete != "Valid":
+        return jsonify({
+            "status": 401,
+            "error": validate_delete
+        }), 401
+    return jsonify({
+        "status": 200,
+        "deleted data": msgControl.delete_message(id)
     }), 200
