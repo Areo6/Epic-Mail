@@ -51,12 +51,19 @@ class MessageController:
         emails = dsMeth.fetch_received_messages()
         return emails
     
-    def fetch_unread_emails(self):
+    def fetch_unread_messages(self):
         """
         This method retrieves all the the unread emails
         """
         unread = dsMeth.fetch_unread_messages()
         return unread
+
+    def fetch_sent_messages(self):
+        """
+        This method retrieves all the the sent emails
+        """
+        sent = dsMeth.fetch_sent_messages()
+        return sent
     
     def fetch_specific_message(self, id):
         """

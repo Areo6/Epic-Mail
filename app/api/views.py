@@ -164,8 +164,27 @@ def fetch_received_messages():
     """
     This endpoint allows the user to view all messages
     """
-    print (msgControl.fetch_received_messages())
     return jsonify({
         "status": 200,
         "data": msgControl.fetch_received_messages()
+    }), 200
+
+@mod.route("/api/v1/messages/unread", methods=["GET"])
+def fetch_unread_messages():
+    """
+    This endpoint allows the user to view all the unread messages
+    """
+    return jsonify({
+        "status": 200,
+        "data": msgControl.fetch_unread_messages()
+    }), 200
+
+@mod.route("/api/v1/messages/sent", methods=["GET"])
+def fetch_sent_messages():
+    """
+    This endpoint allows the user to view all the unread messages
+    """
+    return jsonify({
+        "status": 200,
+        "data": msgControl.fetch_sent_messages()
     }), 200
