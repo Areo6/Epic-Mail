@@ -91,7 +91,7 @@ class DSMethods:
         This method fetch all mesages in the inbox
         """
         if len(self.messages) == 0:
-            return "Oops! It's lonely here. No messages Yet"
+            return "Oops! It is lonely here. No messages Yet"
         return self.messages
 
     def fetch_unread_messages(self):
@@ -127,4 +127,12 @@ class DSMethods:
         message = [message for message in self.messages if message['id'] == id]
         if len(message) != 0:
             self.messages.remove(message[0])
-            return message[0]  
+            return message[0]
+
+    def clear_data(self):
+        """
+        This method clears all the data from users and messages lists
+        """
+        self.users.clear()
+        self.messages.clear()
+        

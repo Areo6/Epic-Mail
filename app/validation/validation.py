@@ -5,7 +5,7 @@ def is_valid_name(name):
     if not isinstance(name, str):
         return "Name should be a string of characters"
     if len(name.strip()) == 0:
-        return "Name can't be empty"
+        return "Name cannot be empty"
     if len(name.strip()) < 3:
         return "Name msut be at least 3 characters"
     patern = re.match('^[^.]*[a-zA-Z]$', name)
@@ -38,12 +38,12 @@ def is_valid_id(id):
 
 def is_valid_subject(subject):
     if not isinstance(subject, str):
-        return "Password must be a string of characters"
+        return "Subject must be a string of characters"
     return "Valid"
 
 def is_valid_message(message):
     if not isinstance(message, str):
         return "Message must be a string of characters"
     if len(message.strip()) == 0:
-        return "Message can't be empty"
+        return "Message cannot be empty"
     return "Valid"

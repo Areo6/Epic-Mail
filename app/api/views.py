@@ -20,12 +20,12 @@ def signup():
     """
     try:
         json.loads(request.get_data())
+        data = request.get_json(force=True)
     except(ValueError, TypeError):
         return jsonify({
             "status": 400,
             "error": "Your request should be a dictionary"
         }), 400
-    data = request.get_json(force=True)
     if not data:
         return jsonify({
             "status": 400,
@@ -204,9 +204,9 @@ def fetch_specific_message(id):
     message_exists = meth.is_existing_message_id(id)
     if not message_exists:
         return jsonify({
-            "status": 401,
+            "status": 404,
             "error": "Id {} not found".format(id)
-        }), 401
+        }), 404
     return jsonify({
         "status": 200,
         "data": msgControl.fetch_specific_message(id)
@@ -227,9 +227,9 @@ def delete_message(id):
     validate_delete = helper.message_delete_validation(id)
     if validate_delete != "Valid":
         return jsonify({
-            "status": 401,
+            "status": 404,
             "error": validate_delete
-        }), 401
+        }), 404
     return jsonify({
         "status": 200,
         "deleted data": msgControl.delete_message(id)
