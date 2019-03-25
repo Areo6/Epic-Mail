@@ -1,7 +1,7 @@
 import unittest
 from flask import json
 from app import app
-from app.datastructure.ds_methods import DSMethods
+from app.model.model import Model
 
 
 class TestMessages(unittest.TestCase):
@@ -10,11 +10,11 @@ class TestMessages(unittest.TestCase):
     """
     def setUp(self):
         self.app = app.test_client()
-        self.datastructure = DSMethods()
+        self.model = Model()
 
 
     def tearDown(self):
-        self.datastructure.clear_data()
+        self.model.clear_data()
     
     def test_create_message_returns_error_if_request_missing_fields(self):
         response = self.app.post("/api/v1/messages", content_type="application/json", data=json.dumps({

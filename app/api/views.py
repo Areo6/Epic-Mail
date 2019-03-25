@@ -3,7 +3,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from app.validation.validation import *
 from app.validation.view_helper import *
 from app.controller.controller import *
-from app.datastructure.ds_methods import *
+from app.model.model import *
 import datetime
 
 
@@ -11,7 +11,6 @@ mod = Blueprint('api', __name__)
 userControl = UserController()
 msgControl = MessageController()
 helper = ViewHelper()
-meth = DSMethods()
 
 @mod.route('/api/v1/auth/signup', methods = ['POST'])
 def signup():
@@ -201,7 +200,7 @@ def fetch_specific_message(id):
             "status": 405,
             "error": "Id should be an integer"
         }), 405
-    message_exists = meth.is_existing_message_id(id)
+    message_exists = msgControl.is_existing_message_id(id)
     if not message_exists:
         return jsonify({
             "status": 404,

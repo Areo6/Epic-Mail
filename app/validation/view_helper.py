@@ -1,4 +1,4 @@
-from app.datastructure.ds_methods import *
+from app.model.model import *
 from app.validation.validation import *
 
 
@@ -7,7 +7,7 @@ class ViewHelper:
     This class helps the view to for some validaions
     """
     def __init__(self):
-        self.meth = DSMethods()
+        self.meth = Model()
 
     def user_signup_validation(self, firstName, lastName, email, password):
         """
