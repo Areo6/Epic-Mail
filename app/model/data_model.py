@@ -2,7 +2,7 @@ from datetime import datetime as dt
 # from werkzeug.security import generate_hash_password, check_password_hash
 
 
-class Model:
+class DataModel:
     """
     This class contains methods to query the datastructure
     """
