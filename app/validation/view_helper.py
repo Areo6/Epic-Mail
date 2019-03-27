@@ -1,4 +1,4 @@
-from app.model.model import *
+from app.model.data_model import *
 from app.validation.validation import *
 
 
@@ -7,7 +7,7 @@ class ViewHelper:
     This class helps the view to for some validaions
     """
     def __init__(self):
-        self.meth = Model()
+        self.meth = DataModel()
 
     def user_signup_validation(self, firstName, lastName, email, password):
         """
@@ -21,8 +21,9 @@ class ViewHelper:
             return is_valid_email(email)
         if is_valid_password(password) != "Valid":
             return is_valid_password(password)
+
         if self.meth.is_existing_user(email):
-            return "User with name {} already taken".format(email)
+            return "User with email {} already exist".format(email)
         return "Valid"
 
     def user_can_login(self, email, password):
@@ -33,13 +34,9 @@ class ViewHelper:
             return is_valid_email(email)
         if is_valid_password(password) != "Valid":
             return is_valid_password(password)
-        if not self.meth.is_existing_user(email):
-            return "User with email {} does not exist".format(email)
-        if not self.meth.is_genuine_password(email, password):
-            return "Your password is incorrect. Please try again"
         return "Valid"
 
-    def message_validation(self, subject, message, sendTo, status):
+    def message_validation(self, subject, senderId, receiverId, message, status):
         """
         This method Validates the message creation
         """
@@ -47,18 +44,31 @@ class ViewHelper:
             return is_valid_subject(subject)
         if is_valid_message(message) != "Valid":
             return is_valid_message(message)
-        if is_valid_email(sendTo) != "Valid":
-            return is_valid_email(sendTo)
+        if is_valid_id(receiverId) != "Valid":
+            return is_valid_id(receiverId)
         if is_valid_status(status) != "Valid":
             return is_valid_status(status)
+
+        if not self.meth.is_existing_user_id(receiverId):
+            return "User with id {} does not exist".format(receiverId)
         return "Valid"
 
-    def message_delete_validation(self, id):
+    def message_delete_validation(self, messageId):
         """
         This method checks if message with given id can be deleted
         """
-        if is_valid_id(id) != "Valid":
-            return is_valid_id(id)
-        if not self.meth.is_existing_message_id(id):
-            return "Message with id {} not found".format(id)
+
+        if not self.meth.is_existing_message_id(messageId):
+            return "Message with id {} not found".format(messageId)
+        return "Valid"
+
+    def group_creation_validation(self, groupName, groupRole):
+        """
+        This checks if the data provided is valid before group creation
+        """
+
+        if is_valid_name(groupName) != "Valid":
+            return is_valid_name(groupName)
+        if is_valid_group_role(groupRole) != "Valid":
+            return is_valid_group_role(groupRole)
         return "Valid"

@@ -1,4 +1,4 @@
-from app.model.model import Model
+from app.model.data_model import DataModel
 
 
 class UserController:
@@ -6,13 +6,13 @@ class UserController:
     This class controls user model
     """
     def __init__(self):
-        self.model = Model()
+        self.model = DataModel()
 
     def signup(self, firstName, lastName, email, password):
         """
         This method adds a new user
         """
-        create = self.model.signup(firstName=firstName, lastName=lastName, email=email, password=password)
+        create = self.model.signup(firstName, lastName, email, password)
         return create
     
     def is_existing_user(self, email):
@@ -25,7 +25,7 @@ class UserController:
 
     def login(self, email, password):
         """
-        This method helps the user to login
+        Logs the user in
         """
         user = self.model.login(email=email, password=password)
         if user:
@@ -33,56 +33,64 @@ class UserController:
 
 class MessageController:
     """
-    This class controls the Message model
+    Controls the Message model
     """
     def __init__(self):
-        self.model = Model()
+        self.model = DataModel()
 
-    def create_message(self, subject, message, sendTo, status):
+    def create_message(self, subject, senderId, receiverId, message, status):
         """
         This controls the creation of a new message
         """
-        create = self.model.create_message(subject=subject, message=message, sendTo=sendTo, status=status)
+        create = self.model.create_message(subject, senderId, receiverId, message, status)
         return create
 
-    def fetch_received_messages(self):
+    def fetch_received_messages(self, userId):
         """
-        This method fetches all Received messages
+        Fetches all Received messages
         """
-        emails = self.model.fetch_received_messages()
+        emails = self.model.fetch_received_messages(userId)
         return emails
     
-    def fetch_unread_messages(self):
+    def fetch_unread_messages(self, userId):
         """
-        This method retrieves all the the unread emails
+        Retrieves all the the unread emails
         """
-        unread = self.model.fetch_unread_messages()
+        unread = self.model.fetch_unread_messages(userId)
         return unread
 
-    def fetch_sent_messages(self):
+    def fetch_sent_messages(self, userId):
         """
         This method retrieves all the the sent emails
         """
-        sent = self.model.fetch_sent_messages()
+        sent = self.model.fetch_sent_messages(userId)
         return sent
     
-    def fetch_specific_message(self, id):
+    def fetch_specific_message(self, userId, messageId):
         """
-        This method fetches a specific email
+        Fetches a specific email
         """
-        msg = self.model.fetch_specific_message(id)
+        msg = self.model.fetch_specific_message(userId, messageId)
         return msg
 
-    def is_existing_message_id(self, id):
+    def is_existing_message_id(self, messageId):
         """
         This checks if a message id exists
         """
-        msg = self.model.fetch_specific_message(id)
+        msg = self.model.is_existing_message_id(messageId)
         return msg
 
-    def delete_message(self, id):
+    def delete_message(self, userId, messageId):
         """
         This method deletes a message given a email id
         """
-        message = self.model.delete_message(id=id)
+        message = self.model.delete_message(userId, messageId)
         return message
+
+    def create_group(self, userId, groupName, groupRole):
+        """
+        This helps to create a group
+        """
+        group = self.model.create_group(userId, groupName, groupRole)
+        return group
+
