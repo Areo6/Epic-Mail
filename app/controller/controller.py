@@ -86,3 +86,11 @@ class MessageController:
         """
         message = self.model.delete_message(userId, messageId)
         return message
+
+    def create_group(self, userId, groupName, groupRole):
+        """
+        This helps to create a group
+        """
+        group = self.model.create_group(userId, groupName, groupRole)
+        return group
+

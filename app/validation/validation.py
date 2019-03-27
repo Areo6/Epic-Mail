@@ -47,3 +47,10 @@ def is_valid_message(message):
     if len(message.strip()) == 0:
         return "Message cannot be empty"
     return "Valid"
+
+def is_valid_group_role(role):
+    if not isinstance(role, str):
+        return "Group Role must be a string of characters"
+    if len(role.strip()) == 0:
+        return "Group Role cannot be empty"
+    return "Valid"

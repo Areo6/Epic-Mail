@@ -43,8 +43,9 @@ class Database():
             )""",
             """CREATE TABLE IF NOT EXISTS groups(
                 groupId SERIAL PRIMARY KEY,
+                groupowner SMALLINT NOT NULL REFERENCES users(userId) ON UPDATE CASCADE ON DELETE CASCADE,
                 groupName VARCHAR(30) NOT NULL,
-                groupeRole VARCHAR(30) NOT NULL
+                groupRole VARCHAR(30) NOT NULL
             )""",
             """CREATE TABLE IF NOT EXISTS group_members(
                 Id SERIAL PRIMARY KEY,

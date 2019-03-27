@@ -57,7 +57,18 @@ class ViewHelper:
         """
         This method checks if message with given id can be deleted
         """
-        
+
         if not self.meth.is_existing_message_id(messageId):
             return "Message with id {} not found".format(messageId)
+        return "Valid"
+
+    def group_creation_validation(self, groupName, groupRole):
+        """
+        This checks if the data provided is valid before group creation
+        """
+
+        if is_valid_name(groupName) != "Valid":
+            return is_valid_name(groupName)
+        if is_valid_group_role(groupRole) != "Valid":
+            return is_valid_group_role(groupRole)
         return "Valid"

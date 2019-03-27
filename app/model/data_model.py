@@ -127,6 +127,14 @@ class DataModel:
         """
         Deletes an email given the the email id
         """
-        query = ("""DELETE FROM messages WHERE receiverId = '{}' OR senderId = '{}' AND messageId = '{}'""".format(userId, userId, messageId))
+        query = ("""DELETE FROM messages WHERE senderId = '{}' AND messageId = '{}'""".format(userId, messageId))
         self.cursor.execute(query)
-        return "Message with id '{}' successfully deleted".format(messageId)    
+        return "Message with id '{}' successfully deleted".format(messageId)
+
+    def create_group(self, userId, groupName, groupRole):
+        """
+        Creates a group owned by the current user
+        """
+        query = ("""INSERT INTO groups (groupowner, groupName, groupRole) VALUES ('{}','{}','{}')""".format(userId, groupName, groupRole))
+        self.cursor.execute(query)
+        return "Successfully create a group"

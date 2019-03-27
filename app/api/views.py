@@ -51,7 +51,8 @@ def signup():
             "status": 417,
             "error": validate_user
         }), 417
-    user = userControl.signup(data['firstName'], data['lastName'], data['email'], data['password'])
+    userControl.signup(data['firstName'], data['lastName'], data['email'], data['password'])
+    user = userControl.login(data["email"], data["password"])
     access_token = create_access_token(identity=user, expires_delta=datetime.timedelta(days=1))
     return jsonify({
         "status": 201,
@@ -118,8 +119,6 @@ def create_message():
     This endpoint allows the creation of a message
     """
     user_id = get_jwt_identity()["userid"]
-    user_id = int(user_id)
-    print(user_id)
     
     try:
         json.loads(request.get_data())
@@ -260,3 +259,55 @@ def delete_message(id):
         "status": 200,
         "deleted data": msgControl.delete_message(user_id, id)
     }), 200
+
+@mod.route("/api/v2/groups", methods= ["POST"])
+@jwt_required
+def create_group():
+    """
+    This endpoint allows the creation of a gruoup
+    """
+    user_id = get_jwt_identity()["userid"]
+    
+    try:
+        json.loads(request.get_data())
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 400,
+            "error": "Json data missing"
+        }), 400
+    data = request.get_json(force=True)
+    if not data:
+        return jsonify({
+            "status": 400,
+            "error": "Your request should be in json format"
+        }), 400
+    if len(data) < 2:
+        return jsonify({
+            "status": 400,
+            "error": "Missing fields. Either groupName or groupRole are missing"
+            }),400
+    if len(data) > 2:
+        return jsonify({
+            "status": 414,
+            "error": "Too many arguments. Only groupName and groupRole are required"
+            }),414
+    if not "groupName" in data or not "groupRole" in data:
+        return jsonify({
+            "status": 400,
+            "error": "groupName or groupRole is missing. Check the spelling"
+        }), 400
+
+    valid_group = helper.group_creation_validation(data['groupName'], data['groupRole'])
+
+    if valid_group != "Valid":
+        return jsonify({
+            "status": 417,
+            "error": valid_group
+        }), 417
+
+    group = msgControl.create_group(user_id, data['groupName'], data['groupRole'])
+
+    return jsonify({
+        "status": 201,
+        "data": data
+    }), 201
