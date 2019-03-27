@@ -27,7 +27,7 @@ class Database():
         commands = (
             """CREATE TABLE IF NOT EXISTS users(
                 userId SERIAL PRIMARY KEY,
-                fistName VARCHAR(30) NOT NULL,
+                firstName VARCHAR(30) NOT NULL,
                 lastName VARCHAR(30) NOT NULL,
                 email VARCHAR(30) NOT NULL,
                 password VARCHAR(30) NOT NULL

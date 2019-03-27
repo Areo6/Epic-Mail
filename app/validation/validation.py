@@ -20,9 +20,9 @@ def is_valid_email(email):
     return "Valid"
 
 def is_valid_status(status):
-    if status in ["sent", "read", "draft", "unread"]:
+    if status in ["draft", "unread", "read"]:
         return "Valid"
-    return "Status must be either sent dreaft, unread or read"
+    return "Status must be either sent draft, unread or read"
 
 def is_valid_password(password):
     if not isinstance(password, str):
