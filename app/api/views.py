@@ -48,9 +48,10 @@ def signup():
     validate_user = helper.user_signup_validation(data['firstName'], data['lastName'], data['email'], data['password'])
     if validate_user != "Valid":
         return jsonify({
-            "status": 417,
+            "status": helper.status,
             "error": validate_user
-        }), 417
+        }), helper.status
+
     userControl.signup(data['firstName'], data['lastName'], data['email'], data['password'])
     user = userControl.login(data["email"], data["password"])
     access_token = create_access_token(identity=user, expires_delta=datetime.timedelta(days=1))
@@ -153,9 +154,9 @@ def create_message():
 
     if valid_message != "Valid":
         return jsonify({
-            "status": 417,
+            "status": helper.status,
             "error": valid_message
-        }), 417
+        }), helper.status
 
     message = msgControl.create_message(data['subject'], user_id, data['receiverId'], data['message'], data['status'])
 
@@ -226,9 +227,16 @@ def fetch_specific_message(id):
             "error": "Message with Id {} not found".format(id)
         }), 404
 
+    message = msgControl.fetch_specific_message(user_id, id)
+    if not message:
+        return jsonify({
+        "status": 403,
+        "data": "You are not allowed to see this message"
+    }), 403
+
     return jsonify({
         "status": 200,
-        "data": msgControl.fetch_specific_message(user_id, id)
+        "data": message
     }), 200
 
 @mod.route("/api/v2/messages/<id>", methods=["DELETE"])
@@ -371,9 +379,9 @@ def edit_group_name(id):
 
     if valid_group != "Valid":
         return jsonify({
-            "status": 404,
+            "status": helper.status,
             "error": valid_group
-        }), 404
+        }), helper.status
 
     group = msgControl.edit_group_name(user_id, id, data['groupName'])
 
@@ -401,9 +409,9 @@ def delete_group(id):
     validate_delete = helper.group_delete_validation(user_id, id)
     if validate_delete != "Valid":
         return jsonify({
-            "status": 417,
+            "status": helper.status,
             "error": validate_delete
-        }), 417
+        }), helper.status
 
     return jsonify({
         "status": 200,
@@ -459,9 +467,9 @@ def add_group_member(id):
 
     if valid_member != "Valid":
         return jsonify({
-            "status": 417,
+            "status": helper.status,
             "error": valid_member
-        }), 417
+        }), helper.status
 
     member = msgControl.add_group_member(id, data['userId'], data['userRole'])
 
@@ -491,11 +499,71 @@ def delete_member(group_id, id):
     validate_delete = helper.delete_member_validation(user_id, id, group_id)
     if validate_delete != "Valid":
         return jsonify({
-            "status": 417,
+            "status": helper.status,
             "error": validate_delete
-        }), 417
+        }), helper.status
 
     return jsonify({
         "status": 200,
         "deleted data": msgControl.delete_member(id)
     }), 200
+
+@mod.route("/api/v2/groups/<id>/messages", methods= ["POST"])
+@jwt_required
+def create_group_message(id):
+    """
+    This endpoint allows the creation of a message
+    """
+    user_id = get_jwt_identity()["userid"]
+    
+    try:
+        json.loads(request.get_data())
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 400,
+            "error": "Json data missing"
+        }), 400
+    try:
+        id = int(id)
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 405,
+            "error": "Group and User Id should be integers"
+        }), 405
+
+    data = request.get_json(force=True)
+    if not data:
+        return jsonify({
+            "status": 400,
+            "error": "Your request should be in json format"
+        }), 400
+    if len(data) < 3:
+        return jsonify({
+            "status": 400,
+            "error": "Missing fields. Either subject, message or status missing"
+            }),400
+    if len(data) > 3:
+        return jsonify({
+            "status": 414,
+            "error": "Too many arguments. Only subject, message and status are required"
+            }),414
+    if not "subject" in data or not "message" in data or not "status" in data:
+        return jsonify({
+            "status": 400,
+            "error": "subject, message or status is missing. Check the spelling"
+        }), 400
+
+    valid_message = helper.group_message_validation(data['subject'], user_id, id, data['message'], data['status'])
+
+    if valid_message != "Valid":
+        return jsonify({
+            "status": helper.status,
+            "error": valid_message
+        }), helper.status
+
+    message = msgControl.create_group_message(data['subject'], user_id, id, data['message'], data['status'])
+
+    return jsonify({
+        "status": 201,
+        "data": data
+    }), 201

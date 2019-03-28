@@ -8,21 +8,27 @@ class ViewHelper:
     """
     def __init__(self):
         self.meth = DataModel()
+        self.status = 200
 
     def user_signup_validation(self, firstName, lastName, email, password):
         """
         This method helps validate the user
         """
         if is_valid_name(firstName) != "Valid":
+            self.status = 417
             return is_valid_name(firstName)
         if is_valid_name(lastName) != "Valid":
+            self.status = 417
             return is_valid_name(lastName)
         if is_valid_email(email) != "Valid":
+            self.status = 417
             return is_valid_email(email)
         if is_valid_password(password) != "Valid":
+            self.status = 417
             return is_valid_password(password)
 
         if self.meth.is_existing_user(email):
+            self.status = 409
             return "User with email {} already exist".format(email)
         return "Valid"
 
@@ -41,15 +47,20 @@ class ViewHelper:
         This method Validates the message creation
         """
         if is_valid_subject(subject) != "Valid":
+            self.status = 417
             return is_valid_subject(subject)
         if is_valid_message(message) != "Valid":
+            self.status = 417
             return is_valid_message(message)
         if is_valid_id(receiverId) != "Valid":
+            self.status = 417
             return is_valid_id(receiverId)
         if is_valid_status(status) != "Valid":
+            self.status = 417
             return is_valid_status(status)
 
         if not self.meth.is_existing_user_id(receiverId):
+            self.status = 404
             return "User with id {} does not exist".format(receiverId)
         return "Valid"
 
@@ -85,10 +96,13 @@ class ViewHelper:
             return is_valid_name(groupName)
 
         if not self.meth.is_existing_group_id(groupId):
+            self.status = 404
             return "Group with id {} does not exist".format(groupId)
         if not self.meth.is_group_owner(userId, groupId):
+            self.status = 403
             return "You cannot edit a group you do not own"
         if self.meth.is_existing_group_name(groupName):
+            self.status = 409
             return "Group with name {} already exist".format(groupName)
         return "Valid"
 
@@ -98,9 +112,11 @@ class ViewHelper:
         """
 
         if not self.meth.is_existing_group_id(groupId):
+            self.status = 404
             return "Group with id {} does not exist".format(groupId)
         if not self.meth.is_group_owner(userId, groupId):
-            return "You cannot edit a group you do not own"
+            self.status = 403
+            return "You cannot delete a group you do not own"
         return "Valid"
 
     def group_member_validation(self, ownerId, groupId, userId, userRole):
@@ -108,18 +124,23 @@ class ViewHelper:
         Validates a group member before adding him to a group
         """
         if not self.meth.is_existing_group_id(groupId):
+            self.status = 404
             return "Group with id {} does not exist".format(groupId)
 
         if not self.meth.is_group_owner(ownerId, groupId):
+            self.status = 403
             return "You cannot add a member to a group you do not own"
 
         if not self.meth.is_existing_user_id(userId):
+            self.status = 404
             return "User with id {} does not exist".format(userId)
 
         if is_valid_user_role(userRole) != "Valid":
+            self.status = 417
             return is_valid_user_role(userRole)  
         
         if self.meth.is_existing_member_id(userId):
+            self.status = 409
             return "User with Id {} already exists".format(userId)
 
         return "Valid"  
@@ -135,10 +156,35 @@ class ViewHelper:
             return is_valid_id(groupId)
         
         if not self.meth.is_existing_group_id(groupId):
+            self.status = 404
             return "Group with id {} does not exist".format(groupId)
         if not self.meth.is_existing_member_id(userId):
-            return "User with Id {} does not exist".format(userId)
+            self.status = 404
+            return "User with Id {} not found in the group".format(userId)
         if not self.meth.is_group_owner(ownerId, groupId):
+            self.status = 403
             return "You cannot edit a group you do not own"
 
-        return "Valid"  
+        return "Valid"
+
+    def group_message_validation(self, subject, senderId, groupId, message, status):
+        """
+        This method Validates the group message creation
+        """
+        if is_valid_subject(subject) != "Valid":
+            self.status = 417
+            return is_valid_subject(subject)
+        if is_valid_message(message) != "Valid":
+            self.status = 417
+            return is_valid_message(message)
+        if is_valid_id(groupId) != "Valid":
+            self.status = 417
+            return is_valid_id(groupId)
+        if is_valid_status(status) != "Valid":
+            self.status = 417
+            return is_valid_status(status)
+
+        if not self.meth.is_existing_group_id(groupId):
+            self.status = 404
+            return "Group with id {} does not exist".format(groupId)
+        return "Valid"

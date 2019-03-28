@@ -117,7 +117,7 @@ class DataModel:
         """
         Fetches a specific email given the message id
         """
-        query = ("""SELECT * FROM messages WHERE receiverId = '{}' OR senderId = '{}' AND messageId = '{}'""".format(userId, userId, messageId))
+        query = ("""SELECT * FROM messages WHERE (receiverId = '{}' OR senderId = '{}') AND messageId = '{}'""".format(userId, userId, messageId))
         self.cursor.execute(query)
         message = self.cursor.fetchone()
         if message:
@@ -220,3 +220,12 @@ class DataModel:
         query = ("""DELETE FROM group_members WHERE userId = '{}'""".format(userId))
         self.cursor.execute(query)
         return "Member with id '{}' successfully deleted".format(userId)
+
+    def create_group_message(self, subject, senderId, groupId, message, status):
+        """
+        Creates a message and sends it to the group
+        """
+        createdOn = '{:%Y-%m-%d %H:%M}'.format(dt.now())
+        query = ("""INSERT INTO group_messages (subject, senderId, groupId, message, status, createdOn) VALUES ('{}','{}','{}','{}','{}','{}')""".format(subject, senderId, groupId, message, status, createdOn))
+        self.cursor.execute(query)
+        return "Successfully create message"

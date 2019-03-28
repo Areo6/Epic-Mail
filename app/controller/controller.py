@@ -128,3 +128,10 @@ class MessageController:
         """
         member = self.model.delete_member(userId)
         return member
+
+    def create_group_message(self, subject, senderId, groupId, message, status):
+        """
+        Allows the user to send a message to a group
+        """
+        create = self.model.create_group_message(subject, senderId, groupId, message, status)
+        return create
