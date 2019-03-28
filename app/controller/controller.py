@@ -107,3 +107,10 @@ class MessageController:
         """
         group = self.model.edit_group_name(userId, groupId, groupName)
         return group
+
+    def delete_group(self, userId, groupId):
+        """
+        Deletes a group given the group owner
+        """
+        message = self.model.delete_group(userId, groupId)
+        return message

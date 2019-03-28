@@ -325,7 +325,7 @@ def fetch__all_groups():
 
 @mod.route("/api/v2/groups/<id>/name", methods= ["PATCH"])
 @jwt_required
-def patch_group_name(id):
+def edit_group_name(id):
     """
     This endpoint allows the creation of a gruoup
     """
@@ -380,4 +380,32 @@ def patch_group_name(id):
     return jsonify({
         "status": 200,
         "data": data
+    }), 200
+
+@mod.route("/api/v2/groups/<id>", methods=["DELETE"])
+@jwt_required
+def delete_group(id):
+    """
+    Allows the user to delete a group they own
+    """
+    user_id = get_jwt_identity()["userid"]
+
+    try:
+        id = int(id)
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 405,
+            "error": "Message Id should be an integer"
+        }), 405
+
+    validate_delete = helper.group_delete_validation(user_id, id)
+    if validate_delete != "Valid":
+        return jsonify({
+            "status": 417,
+            "error": validate_delete
+        }), 417
+
+    return jsonify({
+        "status": 200,
+        "deleted data": msgControl.delete_group(user_id, id)
     }), 200

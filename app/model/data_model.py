@@ -187,4 +187,10 @@ class DataModel:
         if group:
             return group
 
-    
+    def delete_group(self, userId, groupId):
+        """
+        Deletes group owned by userId
+        """
+        query = ("""DELETE FROM groups WHERE groupId = '{}' AND groupowner = '{}'""".format(groupId, userId))
+        self.cursor.execute(query)
+        return "Group with id '{}' successfully deleted".format(groupId)

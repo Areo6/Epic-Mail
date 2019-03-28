@@ -91,3 +91,14 @@ class ViewHelper:
         if self.meth.is_existing_group_name(groupName):
             return "Group with name {} already exist".format(groupName)
         return "Valid"
+
+    def group_delete_validation(self, userId, groupId):
+        """
+        Checks if group with given id can be deleted
+        """
+
+        if not self.meth.is_existing_group_id(groupId):
+            return "Group with id {} does not exist".format(groupId)
+        if not self.meth.is_group_owner(userId, groupId):
+            return "You cannot edit a group you do not own"
+        return "Valid"
