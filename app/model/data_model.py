@@ -212,3 +212,11 @@ class DataModel:
         member = self.cursor.fetchone()
         if member:
             return member
+
+    def delete_member(self, userId):
+        """
+        Deletes user from a group
+        """
+        query = ("""DELETE FROM group_members WHERE userId = '{}'""".format(userId))
+        self.cursor.execute(query)
+        return "Member with id '{}' successfully deleted".format(userId)

@@ -122,4 +122,23 @@ class ViewHelper:
         if self.meth.is_existing_member_id(userId):
             return "User with Id {} already exists".format(userId)
 
-        return "Valid"    
+        return "Valid"  
+
+    def delete_member_validation(self, ownerId, userId, groupId):
+        """
+        Checks if group with given id can be deleted
+        """
+
+        if is_valid_id(userId) != "Valid":
+            return is_valid_id(userId)
+        if is_valid_id(groupId) != "Valid":
+            return is_valid_id(groupId)
+        
+        if not self.meth.is_existing_group_id(groupId):
+            return "Group with id {} does not exist".format(groupId)
+        if not self.meth.is_existing_member_id(userId):
+            return "User with Id {} does not exist".format(userId)
+        if not self.meth.is_group_owner(ownerId, groupId):
+            return "You cannot edit a group you do not own"
+
+        return "Valid"  

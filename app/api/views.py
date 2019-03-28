@@ -469,3 +469,33 @@ def add_group_member(id):
         "status": 201,
         "data": data
     }), 201
+
+
+@mod.route("/api/v2/groups/<group_id>/users/<id>", methods=["DELETE"])
+@jwt_required
+def delete_member(group_id, id):
+    """
+    Allows the group owner to delete a member fom their group
+    """
+    user_id = get_jwt_identity()["userid"]
+
+    try:
+        group_id = int(group_id)
+        id = int(id)
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 405,
+            "error": "Group and User Id should be integers"
+        }), 405
+
+    validate_delete = helper.delete_member_validation(user_id, id, group_id)
+    if validate_delete != "Valid":
+        return jsonify({
+            "status": 417,
+            "error": validate_delete
+        }), 417
+
+    return jsonify({
+        "status": 200,
+        "deleted data": msgControl.delete_member(id)
+    }), 200

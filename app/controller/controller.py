@@ -122,3 +122,9 @@ class MessageController:
         member = self.model.add_group_member(groupId, userId, userRole)
         return member
 
+    def delete_member(self, userId):
+        """
+        Deletes member from group
+        """
+        member = self.model.delete_member(userId)
+        return member
