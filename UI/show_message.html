@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Epic Mail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="img/mail.jpg" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <header role="banner">
+        <nav>
+            <img src="img/mail.jpg" alt="EpicMail image" width="35px" height="35px" id="epic-mail-logo">
+            <span id="epic-mail-label"><label class="epic-logo">Epic</label><label class="mail-logo">Mail</label></span>
+            <div id="profile">
+                <img src="img/profile.png" alt="Profile image" height="35px" width="35px" id="profile-pic">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        <div class="content-wrap">
+            <div class="col-narrow">
+                <button id="compose-btn"><img src="img/compose.png" height="20px"> <span class="compose-lab">Compose</span></button>
+                <button onclick="openInbox()" class="inbox-btn"><img src="img/Inbox-icon.png" height="15px" width="15px"> <span class="inbox-lab box-span">Inbox</span></button>
+                <button onclick="openInbox()" class="inbox-btn"><img src="img/sent.jpeg" height="15px" width="15px"> <span class="sent-lab box-span">Sent</span></button>
+                <button onclick="openInbox()" class="inbox-btn"><img src="img/draft.jpg" height="14px" width="11px"> <span class="draft-lab box-span">Draft</button>
+            </div>
+            <div class="col-wide">
+                <div class="hiden-func">
+                    <div id="hide-btn">
+                        <button class="hidden-btn"><img src="img/delete.png" height="15px" width="15px"></button>
+                        <button class="hidden-btn hidden-draft"><img src="img/draft.jpg" height="13px" width="10px"></button>
+                    </div>
+                </div>
+                <div class="msg-body show-msg">
+                    <h1>Job Interview</h1>
+                    <h4>Nextel Systems<label>"apply.nextelsystem@uganda.org"</label> <span>15/3/2019, 12:09</span></h4>
+                    <p>Hi Malaba.<br><br> We hope this finds you well.<br> We considered you application for Junior developer job and we are glad to let you know that You are invited for a face-to-face interview this Tuesday 19th March 2019 at our locals
+                        in Muyenga TankHill road, Plot No. 134. <br>We hope to see you soon.<br><br> Regards, <br> <br> nextelsystems
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
