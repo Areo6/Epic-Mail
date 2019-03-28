@@ -247,7 +247,6 @@ def delete_message(id):
             "error": "Message Id should be an integer"
         }), 405
 
-    print(id)
     validate_delete = helper.message_delete_validation(id)
     if validate_delete != "Valid":
         return jsonify({
@@ -311,3 +310,74 @@ def create_group():
         "status": 201,
         "data": data
     }), 201
+
+@mod.route("/api/v2/groups", methods= ["GET"])
+@jwt_required
+def fetch__all_groups():
+    """
+    This endpoint allows the user to view all messages
+    """
+
+    return jsonify({
+        "status": 200,
+        "data": msgControl.fetch_all_groups()
+    }), 200
+
+@mod.route("/api/v2/groups/<id>/name", methods= ["PATCH"])
+@jwt_required
+def patch_group_name(id):
+    """
+    This endpoint allows the creation of a gruoup
+    """
+    user_id = get_jwt_identity()["userid"]
+    
+    try:
+        id = int(id)
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 405,
+            "error": "Group Id should be an integer"
+        }), 405
+    try:
+        json.loads(request.get_data())
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 400,
+            "error": "Json data missing"
+        }), 400
+    data = request.get_json(force=True)
+    if not data:
+        return jsonify({
+            "status": 400,
+            "error": "Your request should be in json format"
+        }), 400
+    if len(data) < 1:
+        return jsonify({
+            "status": 400,
+            "error": "Missing field. groupName missing"
+            }),400
+    if len(data) > 1:
+        return jsonify({
+            "status": 414,
+            "error": "Too many arguments. Only groupName is required"
+            }),414
+    if not "groupName":
+        return jsonify({
+            "status": 400,
+            "error": "groupName is missing. Check the spelling"
+        }), 400
+
+    valid_group = helper.group_name_editing_validation(user_id, id, data['groupName'])
+
+    if valid_group != "Valid":
+        return jsonify({
+            "status": 404,
+            "error": valid_group
+        }), 404
+
+    group = msgControl.edit_group_name(user_id, id, data['groupName'])
+
+    return jsonify({
+        "status": 200,
+        "data": data
+    }), 200

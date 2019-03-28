@@ -94,3 +94,16 @@ class MessageController:
         group = self.model.create_group(userId, groupName, groupRole)
         return group
 
+    def fetch_all_groups(self):
+        """
+        Retreives all groups available
+        """
+        groups = self.model.fetch_all_groups()
+        return groups
+
+    def edit_group_name(self, userId, groupId, groupName):
+        """
+        Edits a group name owned by the current user
+        """
+        group = self.model.edit_group_name(userId, groupId, groupName)
+        return group

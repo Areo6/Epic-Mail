@@ -138,3 +138,53 @@ class DataModel:
         query = ("""INSERT INTO groups (groupowner, groupName, groupRole) VALUES ('{}','{}','{}')""".format(userId, groupName, groupRole))
         self.cursor.execute(query)
         return "Successfully create a group"
+
+    def fetch_all_groups(self):
+        """
+        Fetches all group records
+        """
+        query = ("""SELECT * FROM groups;""")
+        self.cursor.execute(query)
+        groups = self.cursor.fetchall()
+        if not groups:
+            return "Ooh! It's cold in here. No groups yet"
+        return groups
+    
+    def edit_group_name(self, userId, groupId, groupName):
+        """
+        Edits a group name owned by the current user
+        """
+        query = ("""UPDATE groups SET groupName ='{}' WHERE groupId = '{}' AND groupowner = '{}'""".format(groupName, groupId, userId))
+        self.cursor.execute(query)
+        return "Successfully edited the group name"
+
+    def is_group_owner(self, userId, groupId):
+        """
+        Checks if the user with given id is a group owner
+        """
+        query = ("""SELECT * FROM groups WHERE groupId = '{}' AND groupowner = '{}'""".format(groupId, userId))
+        self.cursor.execute(query)
+        group = self.cursor.fetchone()
+        return group
+    
+    def is_existing_group_id(self, groupId):
+        """
+        This checks if a group id exists
+        """
+        query = ("""SELECT * FROM groups WHERE groupId = '{}'""".format(groupId))
+        self.cursor.execute(query)
+        group = self.cursor.fetchone()
+        if group:
+            return group
+
+    def is_existing_group_name(self, groupName):
+        """
+        Checks if a group name already exists
+        """
+        query = ("""SELECT * FROM groups WHERE groupName = '{}'""".format(groupName))
+        self.cursor.execute(query)
+        group = self.cursor.fetchone()
+        if group:
+            return group
+
+    
