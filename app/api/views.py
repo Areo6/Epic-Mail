@@ -409,3 +409,63 @@ def delete_group(id):
         "status": 200,
         "deleted data": msgControl.delete_group(user_id, id)
     }), 200
+
+@mod.route("/api/v2/groups/<id>/users", methods= ["POST"])
+@jwt_required
+def add_group_member(id):
+    """
+    This endpoint allows the creation of a message
+    """
+    user_id = get_jwt_identity()["userid"]
+    
+    try:
+        json.loads(request.get_data())
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 400,
+            "error": "Json data missing"
+        }), 400
+    try:
+        id = int(id)
+    except(ValueError, TypeError):
+        return jsonify({
+            "status": 405,
+            "error": "Message Id should be an integer"
+        }), 405
+
+    data = request.get_json(force=True)
+    if not data:
+        return jsonify({
+            "status": 400,
+            "error": "Your request should be in json format"
+        }), 400
+    if len(data) < 2:
+        return jsonify({
+            "status": 400,
+            "error": "Missing fields. Either userId or userRole missing"
+            }),400
+    if len(data) > 2:
+        return jsonify({
+            "status": 414,
+            "error": "Too many arguments. Only userId and userRole are required"
+            }),414
+    if not "userId" in data or not "userRole" in data:
+        return jsonify({
+            "status": 400,
+            "error": "userId or userRole is missing. Check the spelling"
+        }), 400
+
+    valid_member = helper.group_member_validation(user_id, id, data['userId'], data['userRole'])
+
+    if valid_member != "Valid":
+        return jsonify({
+            "status": 417,
+            "error": valid_member
+        }), 417
+
+    member = msgControl.add_group_member(id, data['userId'], data['userRole'])
+
+    return jsonify({
+        "status": 201,
+        "data": data
+    }), 201

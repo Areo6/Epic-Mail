@@ -102,3 +102,24 @@ class ViewHelper:
         if not self.meth.is_group_owner(userId, groupId):
             return "You cannot edit a group you do not own"
         return "Valid"
+
+    def group_member_validation(self, ownerId, groupId, userId, userRole):
+        """
+        Validates a group member before adding him to a group
+        """
+        if not self.meth.is_existing_group_id(groupId):
+            return "Group with id {} does not exist".format(groupId)
+
+        if not self.meth.is_group_owner(ownerId, groupId):
+            return "You cannot add a member to a group you do not own"
+
+        if not self.meth.is_existing_user_id(userId):
+            return "User with id {} does not exist".format(userId)
+
+        if is_valid_user_role(userRole) != "Valid":
+            return is_valid_user_role(userRole)  
+        
+        if self.meth.is_existing_member_id(userId):
+            return "User with Id {} already exists".format(userId)
+
+        return "Valid"    

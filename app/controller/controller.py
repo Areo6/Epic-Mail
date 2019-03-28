@@ -112,5 +112,13 @@ class MessageController:
         """
         Deletes a group given the group owner
         """
-        message = self.model.delete_group(userId, groupId)
-        return message
+        group = self.model.delete_group(userId, groupId)
+        return group
+
+    def add_group_member(self, groupId, userId, userRole):
+        """
+        Adds a member to the group
+        """
+        member = self.model.add_group_member(groupId, userId, userRole)
+        return member
+

@@ -54,3 +54,12 @@ def is_valid_group_role(role):
     if len(role.strip()) == 0:
         return "Group Role cannot be empty"
     return "Valid"
+
+def is_valid_user_role(role):
+    if not isinstance(role, str):
+        return "Group Role must be a string of characters"
+    if len(role.strip()) == 0:
+        return "Group Role cannot be empty"
+    if role not in ["user", "admin"]:
+        return "Invalid role. Role should be either admin or user"
+    return "Valid"

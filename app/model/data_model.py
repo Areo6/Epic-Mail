@@ -194,3 +194,21 @@ class DataModel:
         query = ("""DELETE FROM groups WHERE groupId = '{}' AND groupowner = '{}'""".format(groupId, userId))
         self.cursor.execute(query)
         return "Group with id '{}' successfully deleted".format(groupId)
+
+    def add_group_member(self, groupId, userId, userRole):
+        """
+        Adds a member to the group
+        """
+        query = ("""INSERT INTO group_members (groupId, userId, userRole) VALUES ('{}','{}','{}')""".format(groupId, userId, userRole))
+        self.cursor.execute(query)
+        return "Successfully added member"
+    
+    def is_existing_member_id(self, userId):
+        """
+        Checks if a member exists given the id
+        """
+        query = ("""SELECT * FROM group_members WHERE userId = '{}'""".format(userId))
+        self.cursor.execute(query)
+        member = self.cursor.fetchone()
+        if member:
+            return member
