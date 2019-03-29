@@ -1,7 +1,7 @@
 # Epic-Mail
-[![Build Status](https://travis-ci.com/Eubule/Epic-Mail.svg?branch=ch-test-endpoints-164848377)](https://travis-ci.com/Eubule/Epic-Mail)
-[![Coverage Status](https://coveralls.io/repos/github/Eubule/Epic-Mail/badge.svg?branch=ch-test-endpoints-164848377)](https://coveralls.io/github/Eubule/Epic-Mail?branch=ch-test-endpoints-164848377)
-[![Maintainability](https://api.codeclimate.com/v1/badges/39b05a4e7dc5545c7b14/maintainability)](https://codeclimate.com/github/Eubule/Epic-Mail/maintainability)
+[![Build Status](https://travis-ci.com/Eubule/Epic-Mail.svg?branch=ft-user-can-send-email-to-group-ch3-164879077)](https://travis-ci.com/Eubule/Epic-Mail)
+[![Coverage Status](https://coveralls.io/repos/github/Eubule/Epic-Mail/badge.svg?branch=ft-user-can-send-email-to-group-ch3-164879077)](https://coveralls.io/github/Eubule/Epic-Mail?branch=ft-user-can-send-email-to-group-ch3-164879077)
+[![Maintainability](https://api.codeclimate.com/v2/badges/39b05a4e7dc5545c7b14/maintainability)](https://codeclimate.com/github/Eubule/Epic-Mail/maintainability)
 
 ## DESCRIPTION
 
@@ -13,20 +13,28 @@ Epic Email is an email  web App that helps people share messages or information
 
 ## Link to Epic-Mail using data stuctures on Heroku
 
-[Epic-Mail](https://epic-mail-malaba.herokuapp.com/api/v1/messages)
+[Epic-Mail](https://epic-mail-malaba.herokuapp.com/api/v2/messages)
 
 ## Routes captured by Epic-Mail
 
  REQUEST | ROUTE | FUNCTIONALITY
  ------- | ----- | -------------
- **GET** | /api/v1/messages | Fetches all messages
- **POST** | /api/v1/messages | Posts a message
- **GET** | /api/v1/message/< messageId> | Fetches a specific message
- **GET** | /api/v1/messages/sent | Fetches all sent messages
- **GET** | /api/v1/messages/unread | Fetches all unread messages
- **DELETE** | /api/v1/message/< messageId> | Deletes a message
- **POST** | /api/v1/auth/signup | Creates a new User
- **POST** | /api/v1/auth/login | Logs in the user
+ **GET** | /api/v2/messages | Fetches all messages
+ **POST** | /api/v2/messages | Posts a message
+ **GET** | /api/v2/message/< messageId> | Fetches a specific message
+ **GET** | /api/v2/messages/sent | Fetches all sent messages
+ **GET** | /api/v2/messages/unread | Fetches all unread messages
+ **DELETE** | /api/v2/message/< messageId> | Deletes a message
+ **POST** | /api/v2/auth/signup | Creates a new User
+ **POST** | /api/v2/auth/login | Logs in the user
+ **POST** | /api/v2/groups | Creates a new group
+ **GET** | /api/v2/groups | Fetches all groups
+ **PATCH** | /api/v2/groups/< group-id>/nam | Edits group name
+ **DELETE** | /api/v2/groups/< group-id> | Deletes a group
+ **POST** | /api/v2/groups/< group-id>/users | Adds a user to a group
+ **GET** | /api/v2/groups/< group-id>/users/< user-id> | Deletes a user from group
+ **POST** | /api/v2/groups/< group-id>/emails | creates email for the group
+
 
 
 ## BUIT WITH
