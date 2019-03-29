@@ -11,7 +11,7 @@ class Database():
     def __init__(self):
         try:
             if os.getenv("APP_SETTINGS") == "TESTING":
-                self.conn = psycopg2.connect(database="epicmail", user="postgres", password="postgres", host="localhost", port=5432)
+                self.conn = psycopg2.connect(database="epic_test", user="postgres", password="postgres", host="localhost", port=5432)
                 print("Connected to epic_test db")
             else:
                 self.conn = psycopg2.connect(database="epicmail", user="postgres", password="postgres", host="localhost", port=5432)

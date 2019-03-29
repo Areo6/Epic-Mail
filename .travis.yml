@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - "3.5.2"
+
+services:
+  - postgresql
+
+env:
+  global:
+    - APP_SETTINGS="TESTING"
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - "psql -c 'create database epic_test;' -U postgres"
+
+script:
+  - python3 -m pytest --cov app/
+
+after_success:
+  - coveralls
