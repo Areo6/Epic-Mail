@@ -57,7 +57,7 @@ def signup():
     access_token = create_access_token(identity=user, expires_delta=datetime.timedelta(days=1))
     return jsonify({
         "status": 201,
-        "data": access_token
+        "token": access_token
     }), 201 
 
 @mod.route("/api/v2/auth/login", methods = ["POST"])
@@ -106,7 +106,7 @@ def login():
         access_token = create_access_token(identity=user, expires_delta=datetime.timedelta(days=1))
         return jsonify({
             "status": 200,
-            "data": access_token
+            "token": access_token
         }), 200
     return jsonify({
             "status": 401,
@@ -308,9 +308,9 @@ def create_group():
 
     if valid_group != "Valid":
         return jsonify({
-            "status": 417,
+            "status": helper.status,
             "error": valid_group
-        }), 417
+        }), helper.status
 
     group = msgControl.create_group(user_id, data['groupName'], data['groupRole'])
 

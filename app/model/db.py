@@ -10,11 +10,12 @@ class Database():
     """
     def __init__(self):
         try:
-            if os.environ["APP_SETTINGS"] == "TESTING":
+            if os.getenv("APP_SETTINGS") == "TESTING":
+                self.conn = psycopg2.connect(database="epicmail", user="postgres", password="postgres", host="localhost", port=5432)
+                print("Connected to epic_test db")
+            else:
                 self.conn = psycopg2.connect(database="epicmail", user="postgres", password="postgres", host="localhost", port=5432)
                 print("Connected to epicmail db")
-            else:
-                self.conn = psycopg2.connect(database=os.environ["DATABASE_NAME"], user=os.environ["DATABASE_USER"], password=os.environ["DATABASE_PASSWORD"], host=os.environ["DATABASE_HOST"], port=os.environ["DATABASE_PORT"])
             self.conn.autocommit = True
             self.cur = self.conn.cursor(cursor_factory=ex.RealDictCursor)
         except Exception as exc:
@@ -77,6 +78,6 @@ class Database():
             """DROP TABLE IF EXISTS group_members CASCADE""",
             """DROP TABLE IF EXISTS groups CASCADE""",
             """DROP TABLE IF EXISTS messages CASCADE""",
-            """DROP TABLE IF EXISTS users CASCADE""") 
+            """DROP TABLE IF EXISTS users CASCADE""")
         for query in queries:
             self.cur.execute(query)

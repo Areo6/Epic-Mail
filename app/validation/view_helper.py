@@ -79,11 +79,14 @@ class ViewHelper:
         """
 
         if is_valid_name(groupName) != "Valid":
+            self.status = 417
             return is_valid_name(groupName)
         if is_valid_group_role(groupRole) != "Valid":
+            self.status = 417
             return is_valid_group_role(groupRole)
 
         if self.meth.is_existing_group_name(groupName):
+            self.status = 409
             return "Group with name {} already exist".format(groupName)
         return "Valid"
     
@@ -93,13 +96,14 @@ class ViewHelper:
         """
 
         if is_valid_name(groupName) != "Valid":
+            self.status = 417
             return is_valid_name(groupName)
 
         if not self.meth.is_existing_group_id(groupId):
             self.status = 404
             return "Group with id {} does not exist".format(groupId)
         if not self.meth.is_group_owner(userId, groupId):
-            self.status = 403
+            self.status = 401
             return "You cannot edit a group you do not own"
         if self.meth.is_existing_group_name(groupName):
             self.status = 409
@@ -115,7 +119,7 @@ class ViewHelper:
             self.status = 404
             return "Group with id {} does not exist".format(groupId)
         if not self.meth.is_group_owner(userId, groupId):
-            self.status = 403
+            self.status = 401
             return "You cannot delete a group you do not own"
         return "Valid"
 
@@ -128,7 +132,7 @@ class ViewHelper:
             return "Group with id {} does not exist".format(groupId)
 
         if not self.meth.is_group_owner(ownerId, groupId):
-            self.status = 403
+            self.status = 401
             return "You cannot add a member to a group you do not own"
 
         if not self.meth.is_existing_user_id(userId):
