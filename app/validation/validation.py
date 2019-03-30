@@ -20,15 +20,15 @@ def is_valid_email(email):
     return "Valid"
 
 def is_valid_status(status):
-    if status in ["sent", "read", "draft", "unread"]:
+    if status in ["draft", "unread", "read"]:
         return "Valid"
-    return "Status must be either sent dreaft, unread or read"
+    return "Status must be either sent draft, unread or read"
 
 def is_valid_password(password):
     if not isinstance(password, str):
         return "Password must be a string of characters"
     if len(password) < 6:
-        return "Password must be at least 3 characters long"
+        return "Password must be at least 6 characters long"
     return "Valid"
 
 def is_valid_id(id):
@@ -46,4 +46,20 @@ def is_valid_message(message):
         return "Message must be a string of characters"
     if len(message.strip()) == 0:
         return "Message cannot be empty"
+    return "Valid"
+
+def is_valid_group_role(role):
+    if not isinstance(role, str):
+        return "Group Role must be a string of characters"
+    if len(role.strip()) == 0:
+        return "Group Role cannot be empty"
+    return "Valid"
+
+def is_valid_user_role(role):
+    if not isinstance(role, str):
+        return "Group Role must be a string of characters"
+    if len(role.strip()) == 0:
+        return "Group Role cannot be empty"
+    if role not in ["user", "admin"]:
+        return "Invalid role. Role should be either admin or user"
     return "Valid"
