@@ -6,4 +6,4 @@ if __name__ == "__main__":
     db = Database()
     db.create_tables()
     # db.delete_tables()
-    app.run(debug=True)
+    app.run(debug=False)
