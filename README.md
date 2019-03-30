@@ -1,6 +1,6 @@
 # Epic-Mail
 [![Build Status](https://travis-ci.com/Eubule/Epic-Mail.svg?branch=ft-user-can-send-email-to-group-ch3-164879077)](https://travis-ci.com/Eubule/Epic-Mail)
-[![Coverage Status](https://coveralls.io/repos/github/Eubule/Epic-Mail/badge.svg?branch=ft-user-can-send-email-to-group-ch3-164879077)](https://coveralls.io/github/Eubule/Epic-Mail?branch=ft-user-can-send-email-to-group-ch3-164879077)
+[![Coverage Status](https://coveralls.io/repos/github/Eubule/Epic-Mail/badge.svg?branch=ch-test-endpoints-164848377)](https://coveralls.io/github/Eubule/Epic-Mail?branch=ch-test-endpoints-164848377)
 [![Maintainability](https://api.codeclimate.com/v1/badges/39b05a4e7dc5545c7b14/maintainability)](https://codeclimate.com/github/Eubule/Epic-Mail/maintainability)
 
 ## DESCRIPTION
