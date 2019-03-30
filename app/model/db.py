@@ -11,11 +11,13 @@ class Database():
     def __init__(self):
         try:
             if os.getenv("APP_SETTINGS") == "TESTING":
-                self.conn = psycopg2.connect(database="epic_test", user="postgres", password="postgres", host="localhost", port=5432)
+                conn =  'epic_test'
                 print("Connected to epic_test db")
             else:
-                self.conn = psycopg2.connect(database="epicmail", user="postgres", password="postgres", host="localhost", port=5432)
-                print("Connected to epicmail db")
+                conn = 'epicmail'
+            self.conn = psycopg2.connect(database='db6kf224t4p995', user='xpeorndexusxeh',  password='2b2775c6cc4e00f879609dd2409078c2f61ba5149ecece21070b5b3636a95c16',       host='ec2-54-83-49-109.compute-1.amazonaws.com'
+            )
+
             self.conn.autocommit = True
             self.cur = self.conn.cursor(cursor_factory=ex.RealDictCursor)
         except Exception as exc:

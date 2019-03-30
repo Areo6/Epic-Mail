@@ -166,7 +166,7 @@ class ViewHelper:
             self.status = 404
             return "User with Id {} not found in the group".format(userId)
         if not self.meth.is_group_owner(ownerId, groupId):
-            self.status = 403
+            self.status = 401
             return "You cannot edit a group you do not own"
 
         return "Valid"
