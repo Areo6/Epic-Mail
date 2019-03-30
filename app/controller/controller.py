@@ -15,14 +15,6 @@ class UserController:
         create = self.model.signup(firstName, lastName, email, password)
         return create
     
-    def is_existing_user(self, email):
-        """
-        This method returns the user if he exists
-        """
-        user = self.model.is_existing_user(email=email)
-        if user:
-            return user
-
     def login(self, email, password):
         """
         Logs the user in

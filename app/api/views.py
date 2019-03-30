@@ -528,7 +528,7 @@ def create_group_message(id):
     except(ValueError, TypeError):
         return jsonify({
             "status": 405,
-            "error": "Group and User Id should be integers"
+            "error": "Group Id should be integers"
         }), 405
 
     data = request.get_json(force=True)

@@ -40,16 +40,16 @@ class DataModel:
         if user:
             return user
 
-    def is_genuine_password(self, email, password):
-        """
-        Checks if user password is correct
-        """
-        query = ("""SELECT password FROM users WHERE email = '{}'""".format(email))
-        self.cursor.execute(query)
-        pass_code = self.cursor.fetchone()
-        if pass_code == password:
-            return True
-        return False
+    # def is_genuine_password(self, email, password):
+    #     """
+    #     Checks if user password is correct
+    #     """
+    #     query = ("""SELECT password FROM users WHERE email = '{}'""".format(email))
+    #     self.cursor.execute(query)
+    #     pass_code = self.cursor.fetchone()
+    #     if pass_code == password:
+    #         return True
+    #     return False
 
     def login(self, email, password):
         """
@@ -147,7 +147,7 @@ class DataModel:
         self.cursor.execute(query)
         groups = self.cursor.fetchall()
         if not groups:
-            return "Ooh! It's cold in here. No groups yet"
+            return "Ooh! It is cold in here. No groups yet"
         return groups
     
     def edit_group_name(self, userId, groupId, groupName):

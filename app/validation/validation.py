@@ -28,7 +28,7 @@ def is_valid_password(password):
     if not isinstance(password, str):
         return "Password must be a string of characters"
     if len(password) < 6:
-        return "Password must be at least 3 characters long"
+        return "Password must be at least 6 characters long"
     return "Valid"
 
 def is_valid_id(id):

@@ -42,6 +42,11 @@ class TestMessages(unittest.TestCase):
         }))
         self.assertEqual(response.status_code, 400);
 
+        response = self.app.post("/api/v2/messages", headers = {'Authorization': 'Bearer '\
+        + token['token']},content_type="application/json",
+         data=[])
+        self.assertEqual(response.status_code, 400);
+
     def test_create_message_with_too_many_fields(self):
 
         token = self.user_token()

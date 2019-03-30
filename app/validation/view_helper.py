@@ -155,8 +155,10 @@ class ViewHelper:
         """
 
         if is_valid_id(userId) != "Valid":
+            self.status = 417
             return is_valid_id(userId)
         if is_valid_id(groupId) != "Valid":
+            self.status = 417
             return is_valid_id(groupId)
         
         if not self.meth.is_existing_group_id(groupId):
@@ -167,7 +169,7 @@ class ViewHelper:
             return "User with Id {} not found in the group".format(userId)
         if not self.meth.is_group_owner(ownerId, groupId):
             self.status = 401
-            return "You cannot edit a group you do not own"
+            return "You cannot delete a group you do not own"
 
         return "Valid"
 

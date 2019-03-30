@@ -113,6 +113,10 @@ class TestUsers(unittest.TestCase):
             "password": "eubule"
         }))
         self.assertIn("Name cannot be empty", str(response.data));
+
+        response = self.app.post("/api/v2/auth/signup", content_type="application/json",
+         data=[])
+        self.assertEqual(response.status_code, 400);
     
     def test_if_user_tries_to_signup_with_invalid_password(self):
         response = self.app.post("/api/v2/auth/signup", content_type="application/json",\
@@ -122,7 +126,7 @@ class TestUsers(unittest.TestCase):
             "email": "eubule@gmail.com",
             "password": "e"
         }))
-        self.assertIn("Password must be at least 3 characters long", str(response.data))
+        self.assertIn("Password must be at least 6 characters long", str(response.data))
     
     def test_if_user_can_successfuly_signup(self):
         response = self.app.post("/api/v2/auth/signup", content_type="application/json",\
@@ -164,6 +168,24 @@ class TestUsers(unittest.TestCase):
             "other": "something"
         }))
         self.assertEqual(response.status_code, 414)
+
+        response = self.app.post("/api/v2/auth/login", content_type="application/json",\
+         data=json.dumps({
+            "email": "eubulegmail.com",
+            "password": "eubule"
+        }))
+        self.assertEqual(response.status_code, 417)
+
+        response = self.app.post("/api/v2/auth/login", content_type="application/json",\
+         data=json.dumps({
+            "email": "eubule@gmail.com",
+            "password": "haha"
+        }))
+        self.assertEqual(response.status_code, 417)
+
+        response = self.app.post("/api/v2/auth/login", content_type="application/json",
+         data=[])
+        self.assertEqual(response.status_code, 400);
 
         response = self.app.post("/api/v2/auth/login", content_type="application",\
          data=json.dumps([]))
